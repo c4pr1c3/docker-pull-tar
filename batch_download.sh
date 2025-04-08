@@ -41,7 +41,7 @@ while IFS= read -r input; do
     continue
   fi
 
-  archs=("amd64" "arm64v8")
+  archs=("amd64" "arm64" "arm64v8")
   # 检查文件是否存在
   file_path="images/docker/$file_name"
   for arch in ${archs[@]};do
@@ -51,7 +51,7 @@ while IFS= read -r input; do
       # 检查 Python 脚本的退出状态
       if [ $? -ne 0 ]; then
         echo "执行 Python 脚本时出现错误，输入为: $input"
-        break
+        continue
       fi
     else 
       echo "${file_path}_${arch}.tar is good"
